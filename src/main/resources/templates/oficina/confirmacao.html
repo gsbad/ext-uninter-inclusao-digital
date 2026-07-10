@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/head :: common-head}"></th:block>
+    <title>Cadastro realizado - Inclusão Digital</title>
+</head>
+<body>
+<main class="container d-flex flex-column justify-content-center align-items-center text-center"
+      style="min-height: 100vh; max-width: 640px;">
+    <h1 class="mb-3 fs-2">Cadastro realizado com sucesso!</h1>
+    <p class="fs-4 mb-4">
+        As próximas etapas da oficina (questionário e materiais) ainda estão
+        em construção. Em breve você poderá continuar por aqui.
+    </p>
+    <a href="/" class="btn btn-outline-primary btn-lg px-5 py-3 fs-4">Voltar ao início</a>
+</main>
+<th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
+</body>
+</html>

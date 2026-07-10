@@ -26,13 +26,13 @@
 
 ### Epic 3 - Cadastro de Participantes
 
-- [ ] Criar entidade Participant
-- [ ] Criar Repository
-- [ ] Criar Service
-- [ ] Criar Controller
-- [ ] Criar telas de cadastro
-- [ ] Validar dados
-- [ ] Persistir informações
+- [x] Criar entidade Participant
+- [x] Criar Repository
+- [x] Criar Service
+- [x] Criar Controller
+- [x] Criar telas de cadastro
+- [x] Validar dados
+- [x] Persistir informações
 
 ---
 
