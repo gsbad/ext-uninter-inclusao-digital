@@ -1,0 +1,42 @@
+# Blueprint (Infraestrutura-como-Código) do deploy no Render — plano
+# free/hobby. Documenta os recursos provisionados; a criação real neste
+# projeto foi feita via comandos imperativos da Render CLI (ver
+# docs/07-deploy-render.md), já que a sincronização de Blueprints por CLI
+# não estava disponível na versão usada (só "render blueprints validate").
+databases:
+  - name: inclusao-digital-db
+    plan: free
+    region: virginia
+    postgresMajorVersion: "16"
+
+services:
+  - name: inclusao-digital
+    type: web
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: virginia
+    healthCheckPath: /
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: inclusao-digital-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: inclusao-digital-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: inclusao-digital-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: inclusao-digital-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: inclusao-digital-db
+          property: password

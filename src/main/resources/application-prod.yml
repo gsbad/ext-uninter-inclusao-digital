@@ -1,0 +1,24 @@
+# Perfil de produção, ativado via SPRING_PROFILES_ACTIVE=prod (usado no
+# deploy no Render). Sobrescreve apenas o que realmente difere do
+# ambiente de desenvolvimento local — o restante herda application.yml.
+spring:
+  thymeleaf:
+    # Em dev, cache=false recarrega os templates a cada requisição (útil
+    # para editar HTML sem reiniciar). Em produção, isso só desperdiça
+    # CPU recompilando o mesmo template repetidamente.
+    cache: true
+
+  datasource:
+    # O Postgres do Render aceita/exige SSL; o Postgres local do
+    # docker-compose.yml não tem SSL configurado, por isso esse parâmetro
+    # só entra aqui, nunca no application.yml base.
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require
+
+server:
+  tomcat:
+    threads:
+      # O plano free do Render tem só 0.1 vCPU: 200 threads (padrão) nunca
+      # seriam usadas e cada uma reserva memória de pilha, num container
+      # de apenas 512 MB de RAM.
+      max: 50
+      min-spare: 5

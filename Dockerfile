@@ -18,4 +18,11 @@ WORKDIR /app
 COPY --from=build /app/target/inclusao-digital-*.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# -XX:MaxRAMPercentage evita que a JVM reserve quase toda a RAM do
+# container para o heap, sem deixar margem para metaspace/threads/
+# buffers diretos. -XX:+UseSerialGC troca o coletor padrão (G1, que usa
+# múltiplas threads) por um single-thread, mais adequado a ambientes com
+# CPU bem limitada (ex.: plano free do Render, 0.1 vCPU) do que a
+# concorrência do G1 competindo pela pouca CPU disponível.
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=70.0", "-XX:+UseSerialGC", "-jar", "app.jar"]
