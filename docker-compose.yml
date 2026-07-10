@@ -1,5 +1,9 @@
-# Uso exclusivo para desenvolvimento local: sobe apenas o PostgreSQL.
-# A containerização da aplicação em si é tratada no Epic 9/10 (deploy).
+# Por padrao ("docker compose up -d"), sobe so o PostgreSQL: esse e o
+# fluxo de desenvolvimento local, com a aplicacao rodando via
+# "mvn spring-boot:run" fora do container para feedback rapido.
+#
+# Para rodar a stack inteira containerizada (app + banco), use o profile
+# "full": "docker compose --profile full up -d --build".
 services:
   postgres:
     image: postgres:16-alpine
@@ -12,6 +16,28 @@ services:
       - "${DB_PORT:-5432}:5432"
     volumes:
       - inclusao-digital-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-inclusao_digital}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: inclusao-digital-app
+    profiles: ["full"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-inclusao_digital}
+      DB_USER: ${DB_USER:-inclusao_digital}
+      DB_PASSWORD: ${DB_PASSWORD:-inclusao_digital}
+      SERVER_PORT: 8080
+    ports:
+      - "${SERVER_PORT:-8080}:8080"
 
 volumes:
   inclusao-digital-db-data:

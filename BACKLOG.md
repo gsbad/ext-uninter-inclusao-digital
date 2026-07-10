@@ -87,11 +87,11 @@
 
 ### Epic 9 - Finalização
 
-- [ ] Testes
-- [ ] Docker
-- [ ] README
-- [ ] Screenshots
-- [ ] Deploy
+- [x] Testes
+- [x] Docker
+- [x] README
+- [x] Screenshots (responsabilidade do autor, para o trabalho entregue à professora)
+- [x] Deploy (pronto para implantar via Docker; implantação real fica na Epic 10)
 
 ## Epic 10 - Portfólio
 

@@ -17,7 +17,7 @@ A aplicação será utilizada como suporte às atividades realizadas junto ao gr
 - Materiais educativos
 - Quiz sobre segurança digital
 - Registro dos resultados
-- Estatísticas da oficina
+- Painel do facilitador com estatísticas e exportação em CSV
 
 ---
 
@@ -25,11 +25,9 @@ A aplicação será utilizada como suporte às atividades realizadas junto ao gr
 
 ### Frontend
 
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript
+- HTML5, CSS3, Bootstrap 5 (via WebJars, sem CDN)
 - Thymeleaf
+- Bootstrap Icons
 
 ### Backend
 
@@ -39,18 +37,31 @@ A aplicação será utilizada como suporte às atividades realizadas junto ao gr
 ### Banco de Dados
 
 - PostgreSQL
+- Flyway (versionamento de schema)
 
-### Build
+### Build e Testes
 
 - Maven
+- JUnit 5, Mockito
+- Testcontainers (testes de integração contra PostgreSQL real)
+
+### Infraestrutura
+
+- Docker / Docker Compose
 
 ---
 
 ## Arquitetura
 
-O projeto seguirá arquitetura MVC utilizando Spring Boot.
+Arquitetura MVC em camadas, com rotas separadas para o fluxo do participante (`/oficina/**`) e para o painel do facilitador (`/admin/**`). Detalhes completos de requisitos, modelo de dados, casos de uso e decisões técnicas estão documentados em [`docs/`](docs/):
 
-Estrutura prevista:
+- [`docs/01-requisitos.md`](docs/01-requisitos.md)
+- [`docs/02-arquitetura.md`](docs/02-arquitetura.md)
+- [`docs/03-modelo-dados.md`](docs/03-modelo-dados.md)
+- [`docs/04-casos-de-uso.md`](docs/04-casos-de-uso.md)
+- [`docs/05-wireframes.md`](docs/05-wireframes.md)
+
+Estrutura de pacotes:
 
 ```
 controller
@@ -59,11 +70,60 @@ repository
 entity
 dto
 mapper
-validation
 config
-exception
-util
 ```
+
+`validation`, `exception` e `util` (previstos no CLAUDE.md) não foram necessários como pacotes dedicados: a validação usa Bean Validation diretamente nos DTOs/entidades, e o tratamento de erro usa o mecanismo padrão do Spring Boot (`templates/error.html`) — nenhuma lógica customizada o suficiente para justificar uma camada própria.
+
+---
+
+## Como executar
+
+### Pré-requisitos
+
+- Java 21
+- Maven (ou use o `.tool-versions` do repositório com [asdf](https://asdf-vm.com/))
+- Docker e Docker Compose
+
+### 1. Banco de dados local
+
+```bash
+docker compose up -d
+```
+
+Sobe apenas o PostgreSQL, usando as credenciais padrão em [`.env.example`](.env.example) (copie para `.env` se quiser customizar).
+
+### 2. Aplicação
+
+```bash
+mvn spring-boot:run
+```
+
+Acesse `http://localhost:8080`.
+
+### Alternativa: tudo containerizado
+
+Para rodar a aplicação e o banco juntos, sem precisar de Java/Maven na máquina:
+
+```bash
+docker compose --profile full up -d --build
+```
+
+---
+
+## Testes
+
+```bash
+mvn test
+```
+
+Roda os testes unitários e de controller (rápidos, sem dependências externas).
+
+```bash
+mvn verify
+```
+
+Além dos testes unitários, roda também o teste de integração de ponta a ponta (`*IT`), que sobe um PostgreSQL real via Testcontainers e valida o fluxo completo do participante (cadastro → questionário → materiais → quiz → resultado). **Requer Docker instalado.**
 
 ---
 
@@ -84,9 +144,7 @@ Pessoas idosas participantes das oficinas de inclusão digital.
 
 ## Status
 
-🚧 Em desenvolvimento.
-
-Primeira versão desenvolvida como projeto extensionista da UNINTER.
+✅ MVP completo — todas as Epics do [`BACKLOG.md`](BACKLOG.md) implementadas, testadas e prontas para implantação via Docker.
 
 ---
 
