@@ -47,13 +47,13 @@
 
 ### Epic 5 - Materiais Educativos
 
-- [ ] Página inicial
-- [ ] O que são golpes?
-- [ ] Links falsos
-- [ ] PIX
-- [ ] WhatsApp
-- [ ] Senhas seguras
-- [ ] Privacidade
+- [x] Página inicial
+- [x] O que são golpes?
+- [x] Links falsos
+- [x] PIX
+- [x] WhatsApp
+- [x] Senhas seguras
+- [x] Privacidade
 
 ---
 

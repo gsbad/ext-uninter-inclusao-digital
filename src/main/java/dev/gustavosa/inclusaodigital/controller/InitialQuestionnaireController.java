@@ -27,7 +27,7 @@ public class InitialQuestionnaireController {
         Long participantId = (Long) session.getAttribute("participantId");
         Optional<QuestionnaireStep> step = questionnaireService.getCurrentStep(participantId);
         if (step.isEmpty()) {
-            return "redirect:/oficina/questionario/confirmacao";
+            return "redirect:/oficina/materiais";
         }
         populateModel(model, step.get());
         return "oficina/questionario";
@@ -43,7 +43,7 @@ public class InitialQuestionnaireController {
         if (optionId == null) {
             Optional<QuestionnaireStep> step = questionnaireService.getCurrentStep(participantId);
             if (step.isEmpty()) {
-                return "redirect:/oficina/questionario/confirmacao";
+                return "redirect:/oficina/materiais";
             }
             model.addAttribute("erro", "Por favor, selecione uma opção.");
             populateModel(model, step.get());
@@ -52,11 +52,6 @@ public class InitialQuestionnaireController {
 
         questionnaireService.saveAnswer(participantId, questionId, optionId);
         return "redirect:/oficina/questionario";
-    }
-
-    @GetMapping("/confirmacao")
-    public String confirmation() {
-        return "oficina/questionario-confirmacao";
     }
 
     private void populateModel(Model model, QuestionnaireStep step) {
