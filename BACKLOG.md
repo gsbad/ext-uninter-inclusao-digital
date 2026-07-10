@@ -99,6 +99,6 @@
 - [x] Criar logo do projeto
 - [x] Melhorar README
 - [ ] Adicionar GIF demonstrativo (aguarda gravação pelo usuário)
-- [ ] Publicar no GitHub
-- [ ] Implantar com Docker
-- [ ] Disponibilizar em gustavosa.dev
+- [x] Publicar no GitHub (`github.com/gsbad/ext-uninter-inclusao-digital`)
+- [x] Implantar com Docker (Render, plano free — `docker build` a partir do `Dockerfile` do repositório)
+- [x] Disponibilizar publicamente (Render, `https://inclusao-digital.onrender.com` — substitui `gustavosa.dev`, que o usuário decidiu não adquirir por ora)
