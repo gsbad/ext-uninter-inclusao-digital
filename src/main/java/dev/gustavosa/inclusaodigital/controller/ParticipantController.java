@@ -42,14 +42,6 @@ public class ParticipantController {
         }
         Participant participant = participantService.register(form);
         session.setAttribute("participantId", participant.getId());
-        return "redirect:/oficina/cadastro/confirmacao";
-    }
-
-    @GetMapping("/cadastro/confirmacao")
-    public String confirmation(HttpSession session) {
-        if (session.getAttribute("participantId") == null) {
-            return "redirect:/oficina/cadastro";
-        }
-        return "oficina/confirmacao";
+        return "redirect:/oficina/questionario";
     }
 }

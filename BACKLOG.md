@@ -38,10 +38,10 @@
 
 ### Epic 4 - Questionário Inicial
 
-- [ ] Criar perguntas
-- [ ] Criar formulário
-- [ ] Salvar respostas
-- [ ] Exibir confirmação
+- [x] Criar perguntas
+- [x] Criar formulário
+- [x] Salvar respostas
+- [x] Exibir confirmação
 
 ---
 
