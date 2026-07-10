@@ -87,8 +87,8 @@
 
 ### Epic 9 - Finalização
 
-- [x] Testes
-- [x] Docker
+- [x] Testes (unitários validados; teste de integração escrito, bloqueado por limitação de ambiente do Testcontainers — ver README)
+- [x] Docker (build e `docker compose --profile full` validados localmente)
 - [x] README
 - [x] Screenshots (responsabilidade do autor, para o trabalho entregue à professora)
 - [x] Deploy (pronto para implantar via Docker; implantação real fica na Epic 10)
