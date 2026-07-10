@@ -5,62 +5,78 @@
     <title>Painel da Oficina - Inclusão Digital</title>
 </head>
 <body>
-<main class="container py-4">
+<main class="container app-wide py-4">
     <h1 class="mb-4">Oficina de Segurança Digital — Painel</h1>
 
     <div class="row mb-4 g-3">
         <div class="col-sm-6 col-md-4">
-            <div class="card text-center p-3">
-                <i class="bi bi-people fs-2 text-primary" aria-hidden="true"></i>
-                <div class="fs-2 fw-bold" th:text="${stats.totalParticipants()}"></div>
-                <div class="text-muted">participantes</div>
+            <div class="card h-100 p-3">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="stat-card-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fs-2 fw-bold lh-1" th:text="${stats.totalParticipants()}"></div>
+                        <div class="text-muted">participantes</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
-            <div class="card text-center p-3">
-                <i class="bi bi-check2-circle fs-2 text-primary" aria-hidden="true"></i>
-                <div class="fs-2 fw-bold" th:text="${stats.completedQuizCount()}"></div>
-                <div class="text-muted">concluíram o quiz</div>
+            <div class="card h-100 p-3">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="stat-card-icon"><i class="bi bi-check2-circle" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fs-2 fw-bold lh-1" th:text="${stats.completedQuizCount()}"></div>
+                        <div class="text-muted">concluíram o quiz</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
-            <div class="card text-center p-3">
-                <i class="bi bi-graph-up fs-2 text-primary" aria-hidden="true"></i>
-                <div class="fs-2 fw-bold"
-                     th:text="${#numbers.formatDecimal(stats.averageScorePercentage(), 1, 0)} + '%'"></div>
-                <div class="text-muted">média de acertos no quiz</div>
+            <div class="card h-100 p-3">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="stat-card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fs-2 fw-bold lh-1"
+                             th:text="${#numbers.formatDecimal(stats.averageScorePercentage(), 1, 0)} + '%'"></div>
+                        <div class="text-muted">média de acertos no quiz</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-end mb-3">
         <a href="/admin/participantes/exportar" class="btn btn-outline-primary">
-            <i class="bi bi-download me-1" aria-hidden="true"></i>Exportar CSV
+            <i class="bi bi-download me-2" aria-hidden="true"></i>Exportar CSV
         </a>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped align-middle">
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Faixa de idade</th>
-                <th>Quiz</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="p : ${participants}">
-                <td th:text="${p.fullName()}"></td>
-                <td th:text="${p.ageRangeLabel()}"></td>
-                <td th:text="${p.quizScore() != null ? p.quizScore() + '/' + p.quizTotal() : '—'}"></td>
-                <td>
-                    <a th:href="@{'/admin/participantes/' + ${p.id()}}"
-                       class="btn btn-sm btn-outline-secondary"><i class="bi bi-eye" aria-hidden="true"></i> Ver</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="card overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Faixa de idade</th>
+                    <th>Quiz</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${participants}">
+                    <td th:text="${p.fullName()}"></td>
+                    <td th:text="${p.ageRangeLabel()}"></td>
+                    <td th:text="${p.quizScore() != null ? p.quizScore() + '/' + p.quizTotal() : '—'}"></td>
+                    <td class="text-end">
+                        <a th:href="@{'/admin/participantes/' + ${p.id()}}"
+                           class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-eye me-1" aria-hidden="true"></i>Ver
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 <th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>

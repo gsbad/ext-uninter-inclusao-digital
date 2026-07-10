@@ -5,9 +5,11 @@
     <title>Resultado do Quiz - Inclusão Digital</title>
 </head>
 <body>
-<main class="container d-flex flex-column justify-content-center align-items-center text-center"
-      style="min-height: 100vh; max-width: 640px;">
-    <i class="bi bi-trophy mb-3" style="font-size: 4rem; color: var(--bs-primary);" aria-hidden="true"></i>
+<main class="container app-narrow d-flex flex-column justify-content-center align-items-center text-center"
+      style="min-height: 100vh;">
+    <span class="icon-badge mb-4">
+        <i class="bi bi-trophy" aria-hidden="true"></i>
+    </span>
     <h1 class="mb-3 fs-2">Parabéns por participar!</h1>
     <p class="fs-3 mb-4" th:text="'Você acertou ' + ${score} + ' de ' + ${total} + ' perguntas'"></p>
     <p class="fs-4 mb-4">

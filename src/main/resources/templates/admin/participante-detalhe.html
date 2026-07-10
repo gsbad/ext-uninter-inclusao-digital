@@ -5,39 +5,50 @@
     <title th:text="${detail.fullName()} + ' - Painel'"></title>
 </head>
 <body>
-<main class="container py-4" style="max-width: 720px;">
+<main class="container app-wide py-4">
     <a href="/admin/dashboard" class="btn btn-sm btn-outline-secondary mb-3">
-        <i class="bi bi-arrow-left" aria-hidden="true"></i> Voltar ao painel
+        <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Voltar ao painel
     </a>
 
-    <h1 class="mb-1" th:text="${detail.fullName()}"></h1>
-    <p class="text-muted mb-4">
-        <span th:text="${detail.ageRangeLabel()}"></span>
-        <span th:if="${detail.phone()}"> · <span th:text="${detail.phone()}"></span></span>
-    </p>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h1 class="mb-1 fs-2" th:text="${detail.fullName()}"></h1>
+            <p class="text-muted mb-3">
+                <span th:text="${detail.ageRangeLabel()}"></span>
+                <span th:if="${detail.phone()}"> · <span th:text="${detail.phone()}"></span></span>
+            </p>
+            <span class="badge text-bg-primary fs-6 px-3 py-2" th:if="${detail.quizScore() != null}"
+                  th:text="'Quiz: ' + ${detail.quizScore()} + '/' + ${detail.quizTotal()}"></span>
+            <span class="badge text-bg-secondary fs-6 px-3 py-2" th:unless="${detail.quizScore() != null}">
+                Quiz: não concluído
+            </span>
+        </div>
+    </div>
 
-    <h2 class="fs-4 mb-3">
-        Quiz:
-        <span th:if="${detail.quizScore() != null}"
-              th:text="${detail.quizScore()} + '/' + ${detail.quizTotal()}"></span>
-        <span th:unless="${detail.quizScore() != null}">não concluído</span>
-    </h2>
-
-    <h2 class="fs-4 mt-4 mb-2">Questionário inicial</h2>
-    <ul class="list-group mb-4">
-        <li class="list-group-item" th:each="answer : ${detail.initialAnswers()}">
-            <strong th:text="${answer.questionText()}"></strong><br/>
-            <span th:text="${answer.selectedOptionText()}"></span>
-        </li>
-    </ul>
-
-    <h2 class="fs-4 mb-2">Respostas do quiz</h2>
-    <ul class="list-group">
-        <li class="list-group-item" th:each="answer : ${detail.quizAnswers()}">
-            <strong th:text="${answer.questionText()}"></strong><br/>
-            <span th:text="${answer.selectedOptionText()}"></span>
-        </li>
-    </ul>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header fw-semibold">Questionário inicial</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:each="answer : ${detail.initialAnswers()}">
+                        <strong th:text="${answer.questionText()}"></strong><br/>
+                        <span class="text-muted" th:text="${answer.selectedOptionText()}"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header fw-semibold">Respostas do quiz</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:each="answer : ${detail.quizAnswers()}">
+                        <strong th:text="${answer.questionText()}"></strong><br/>
+                        <span class="text-muted" th:text="${answer.selectedOptionText()}"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </main>
 <th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
 </body>
