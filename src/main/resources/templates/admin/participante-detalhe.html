@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/head :: common-head}"></th:block>
+    <title th:text="${detail.fullName()} + ' - Painel'"></title>
+</head>
+<body>
+<main class="container py-4" style="max-width: 720px;">
+    <a href="/admin/dashboard" class="btn btn-sm btn-outline-secondary mb-3">&larr; Voltar ao painel</a>
+
+    <h1 class="mb-1" th:text="${detail.fullName()}"></h1>
+    <p class="text-muted mb-4">
+        <span th:text="${detail.ageRangeLabel()}"></span>
+        <span th:if="${detail.phone()}"> · <span th:text="${detail.phone()}"></span></span>
+    </p>
+
+    <h2 class="fs-4 mb-3">
+        Quiz:
+        <span th:if="${detail.quizScore() != null}"
+              th:text="${detail.quizScore()} + '/' + ${detail.quizTotal()}"></span>
+        <span th:unless="${detail.quizScore() != null}">não concluído</span>
+    </h2>
+
+    <h2 class="fs-4 mt-4 mb-2">Questionário inicial</h2>
+    <ul class="list-group mb-4">
+        <li class="list-group-item" th:each="answer : ${detail.initialAnswers()}">
+            <strong th:text="${answer.questionText()}"></strong><br/>
+            <span th:text="${answer.selectedOptionText()}"></span>
+        </li>
+    </ul>
+
+    <h2 class="fs-4 mb-2">Respostas do quiz</h2>
+    <ul class="list-group">
+        <li class="list-group-item" th:each="answer : ${detail.quizAnswers()}">
+            <strong th:text="${answer.questionText()}"></strong><br/>
+            <span th:text="${answer.selectedOptionText()}"></span>
+        </li>
+    </ul>
+</main>
+<th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
+</body>
+</html>

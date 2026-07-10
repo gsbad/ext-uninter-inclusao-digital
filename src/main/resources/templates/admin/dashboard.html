@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/head :: common-head}"></th:block>
+    <title>Painel da Oficina - Inclusão Digital</title>
+</head>
+<body>
+<main class="container py-4">
+    <h1 class="mb-4">Oficina de Segurança Digital — Painel</h1>
+
+    <div class="row mb-4 g-3">
+        <div class="col-sm-6 col-md-4">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold" th:text="${stats.totalParticipants()}"></div>
+                <div class="text-muted">participantes</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold" th:text="${stats.completedQuizCount()}"></div>
+                <div class="text-muted">concluíram o quiz</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold"
+                     th:text="${#numbers.formatDecimal(stats.averageScorePercentage(), 1, 0)} + '%'"></div>
+                <div class="text-muted">média de acertos no quiz</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="/admin/participantes/exportar" class="btn btn-outline-primary">Exportar CSV</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Faixa de idade</th>
+                <th>Quiz</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${participants}">
+                <td th:text="${p.fullName()}"></td>
+                <td th:text="${p.ageRangeLabel()}"></td>
+                <td th:text="${p.quizScore() != null ? p.quizScore() + '/' + p.quizTotal() : '—'}"></td>
+                <td>
+                    <a th:href="@{'/admin/participantes/' + ${p.id()}}"
+                       class="btn btn-sm btn-outline-secondary">Ver</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
+</body>
+</html>

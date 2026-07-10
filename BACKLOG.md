@@ -68,10 +68,10 @@
 
 ### Epic 7 - Dashboard
 
-- [ ] Listar participantes
-- [ ] Visualizar respostas
-- [ ] Estatísticas
-- [ ] Exportar CSV
+- [x] Listar participantes
+- [x] Visualizar respostas
+- [x] Estatísticas
+- [x] Exportar CSV
 
 ---
 
