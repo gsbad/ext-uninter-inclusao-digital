@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/head :: common-head}"></th:block>
+    <title>Resultado do Quiz - Inclusão Digital</title>
+</head>
+<body>
+<main class="container d-flex flex-column justify-content-center align-items-center text-center"
+      style="min-height: 100vh; max-width: 640px;">
+    <h1 class="mb-3 fs-2">Parabéns por participar!</h1>
+    <p class="fs-3 mb-4" th:text="'Você acertou ' + ${score} + ' de ' + ${total} + ' perguntas'"></p>
+    <p class="fs-4 mb-4">
+        Continue praticando o que aprendeu hoje para navegar com mais segurança.
+    </p>
+    <a href="/oficina/quiz/concluir" class="btn btn-primary btn-lg px-5 py-3 fs-3">Concluir</a>
+</main>
+<th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
+</body>
+</html>

@@ -59,10 +59,10 @@
 
 ### Epic 6 - Quiz
 
-- [ ] Elaborar perguntas
-- [ ] Implementar quiz
-- [ ] Corrigir respostas
-- [ ] Calcular pontuação
+- [x] Elaborar perguntas
+- [x] Implementar quiz
+- [x] Corrigir respostas
+- [x] Calcular pontuação
 
 ---
 
