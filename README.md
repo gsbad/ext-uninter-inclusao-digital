@@ -148,6 +148,38 @@ Além dos testes unitários, roda também o teste de integração de ponta a pon
 
 ---
 
+## Deploy
+
+A aplicação está publicada no **Render**, no plano gratuito (Free/Hobby):
+
+**🔗 https://inclusao-digital.onrender.com**
+
+### Infraestrutura
+
+- **Web Service** (Docker, plano free, região Virginia) — build a partir do [`Dockerfile`](Dockerfile) deste repositório, com deploy automático a cada push na branch `main`.
+- **PostgreSQL** (plano free, região Virginia) — schema criado automaticamente pelo Flyway na primeira inicialização.
+- Infraestrutura documentada como código em [`render.yaml`](render.yaml).
+
+### Como foi feito (resumo)
+
+```bash
+render login
+render postgres create --name inclusao-digital-db --plan free --region virginia --confirm
+render services create --type web_service --runtime docker \
+  --repo https://github.com/gsbad/ext-uninter-inclusao-digital --branch main \
+  --name inclusao-digital --plan free --region virginia --health-check-path / \
+  --env-var SPRING_PROFILES_ACTIVE=prod --confirm
+```
+
+As variáveis `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` e `DB_PASSWORD` do Web Service foram vinculadas ao banco de dados diretamente pelo Dashboard do Render (Environment → variável ligada à propriedade do banco), para a senha nunca precisar ser digitada ou exibida em texto puro. Detalhes completos das decisões técnicas em [`docs/07-deploy-render.md`](docs/07-deploy-render.md).
+
+### Limitações do plano gratuito (importante)
+
+- **O banco de dados PostgreSQL gratuito expira 30 dias após a criação** (mais 14 dias de carência antes da exclusão definitiva dos dados). Passado esse prazo sem upgrade para um plano pago, os dados cadastrados são perdidos.
+- **O Web Service gratuito hiberna após 15 minutos sem tráfego** e "acorda" na próxima requisição — o primeiro acesso após um período de inatividade pode levar cerca de 1 a 2 minutos para responder (a JVM tem partida mais lenta que runtimes interpretados, e o plano free tem apenas 0.1 vCPU).
+
+---
+
 ## Público-alvo
 
 Pessoas idosas participantes das oficinas de inclusão digital.
@@ -165,7 +197,7 @@ Pessoas idosas participantes das oficinas de inclusão digital.
 
 ## Status
 
-✅ MVP completo — todas as Epics do [`BACKLOG.md`](BACKLOG.md) implementadas, testadas e prontas para implantação via Docker.
+✅ MVP completo e **em produção** no Render — todas as Epics do [`BACKLOG.md`](BACKLOG.md) implementadas, testadas e publicadas em https://inclusao-digital.onrender.com.
 
 ---
 
