@@ -1,0 +1,30 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IDE ###
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+
+### Sistema Operacional ###
+.DS_Store
+Thumbs.db
+
+### Ambiente / segredos ###
+.env
+*.env.local
+application-local.yml
+
+### Logs ###
+*.log
+
+### Claude Code (config local, não deve ser versionada) ###
+.claude/
