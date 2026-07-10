@@ -1,6 +1,16 @@
 # Inclusão Digital para Pessoas Idosas
 
+![Java](https://img.shields.io/badge/Java-21-2E6B99?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-2E6B99?logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-2E6B99?logo=postgresql&logoColor=white)
+![Status](https://img.shields.io/badge/status-MVP%20completo-2E6B99)
+![Licença](https://img.shields.io/badge/licença-acadêmica-2E6B99)
+
 Projeto desenvolvido como Atividade Extensionista do curso de Engenharia de Software da UNINTER.
+
+## Demonstração
+
+> 🎬 GIF demonstrativo do fluxo completo (cadastro → questionário → materiais → quiz → resultado, e o painel do facilitador) — em breve.
 
 ## Objetivo
 

@@ -95,10 +95,10 @@
 
 ## Epic 10 - Portfólio
 
-- [ ] Criar favicon
+- [x] Criar favicon
 - [ ] Criar logo do projeto
-- [ ] Melhorar README
-- [ ] Adicionar GIF demonstrativo
+- [x] Melhorar README
+- [ ] Adicionar GIF demonstrativo (aguarda gravação pelo usuário)
 - [ ] Publicar no GitHub
 - [ ] Implantar com Docker
 - [ ] Disponibilizar em gustavosa.dev
