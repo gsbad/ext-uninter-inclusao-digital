@@ -7,9 +7,12 @@
 <body>
 <main class="container d-flex flex-column justify-content-center align-items-center text-center"
       style="min-height: 100vh;">
+    <i class="bi bi-shield-check mb-3" style="font-size: 4rem; color: var(--bs-primary);" aria-hidden="true"></i>
     <h1 class="mb-3 display-5">Bem-vindo à Oficina de Segurança Digital!</h1>
     <p class="fs-4 mb-4">Vamos aprender juntos a navegar com mais segurança.</p>
-    <a href="/oficina/cadastro" class="btn btn-primary btn-lg px-5 py-3 fs-3">Começar</a>
+    <a href="/oficina/cadastro" class="btn btn-primary btn-lg px-5 py-3 fs-3">
+        Começar <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
+    </a>
 </main>
 <th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
 </body>

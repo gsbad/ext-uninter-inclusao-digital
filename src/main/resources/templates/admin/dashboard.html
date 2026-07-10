@@ -11,18 +11,21 @@
     <div class="row mb-4 g-3">
         <div class="col-sm-6 col-md-4">
             <div class="card text-center p-3">
+                <i class="bi bi-people fs-2 text-primary" aria-hidden="true"></i>
                 <div class="fs-2 fw-bold" th:text="${stats.totalParticipants()}"></div>
                 <div class="text-muted">participantes</div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
             <div class="card text-center p-3">
+                <i class="bi bi-check2-circle fs-2 text-primary" aria-hidden="true"></i>
                 <div class="fs-2 fw-bold" th:text="${stats.completedQuizCount()}"></div>
                 <div class="text-muted">concluíram o quiz</div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
             <div class="card text-center p-3">
+                <i class="bi bi-graph-up fs-2 text-primary" aria-hidden="true"></i>
                 <div class="fs-2 fw-bold"
                      th:text="${#numbers.formatDecimal(stats.averageScorePercentage(), 1, 0)} + '%'"></div>
                 <div class="text-muted">média de acertos no quiz</div>
@@ -31,7 +34,9 @@
     </div>
 
     <div class="d-flex justify-content-end mb-3">
-        <a href="/admin/participantes/exportar" class="btn btn-outline-primary">Exportar CSV</a>
+        <a href="/admin/participantes/exportar" class="btn btn-outline-primary">
+            <i class="bi bi-download me-1" aria-hidden="true"></i>Exportar CSV
+        </a>
     </div>
 
     <div class="table-responsive">
@@ -51,7 +56,7 @@
                 <td th:text="${p.quizScore() != null ? p.quizScore() + '/' + p.quizTotal() : '—'}"></td>
                 <td>
                     <a th:href="@{'/admin/participantes/' + ${p.id()}}"
-                       class="btn btn-sm btn-outline-secondary">Ver</a>
+                       class="btn btn-sm btn-outline-secondary"><i class="bi bi-eye" aria-hidden="true"></i> Ver</a>
                 </td>
             </tr>
             </tbody>

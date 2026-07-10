@@ -6,7 +6,9 @@
 </head>
 <body>
 <main class="container py-4" style="max-width: 720px;">
-    <a href="/admin/dashboard" class="btn btn-sm btn-outline-secondary mb-3">&larr; Voltar ao painel</a>
+    <a href="/admin/dashboard" class="btn btn-sm btn-outline-secondary mb-3">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i> Voltar ao painel
+    </a>
 
     <h1 class="mb-1" th:text="${detail.fullName()}"></h1>
     <p class="text-muted mb-4">

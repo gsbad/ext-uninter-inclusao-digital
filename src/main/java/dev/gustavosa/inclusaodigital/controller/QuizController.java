@@ -58,6 +58,12 @@ public class QuizController {
     @GetMapping("/resultado")
     public String result(HttpSession session, Model model) {
         Long participantId = (Long) session.getAttribute("participantId");
+        if (quizService.getCurrentStep(participantId).isPresent()) {
+            // Acesso direto à URL antes de responder todas as perguntas:
+            // volta para a pergunta pendente em vez de calcular e travar
+            // uma pontuação incompleta (QuizResult nunca é recalculado).
+            return "redirect:/oficina/quiz";
+        }
         QuizResult result = quizService.getOrComputeResult(participantId);
         model.addAttribute("score", result.getScore());
         model.addAttribute("total", result.getTotalQuestions());

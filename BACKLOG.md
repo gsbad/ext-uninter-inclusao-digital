@@ -77,11 +77,11 @@
 
 ### Epic 8 - Melhorias
 
-- [ ] Layout responsivo
-- [ ] Melhorias de acessibilidade
-- [ ] Ícones
-- [ ] Feedback visual
-- [ ] Tratamento de erros
+- [x] Layout responsivo
+- [x] Melhorias de acessibilidade
+- [x] Ícones
+- [x] Feedback visual
+- [x] Tratamento de erros
 
 ---
 

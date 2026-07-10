@@ -10,37 +10,37 @@ import java.util.Optional;
  */
 public enum MaterialTopic {
 
-    GOLPES("golpes", "O que são golpes?", List.of(
+    GOLPES("golpes", "O que são golpes?", "bi-exclamation-triangle", List.of(
             "Golpistas costumam criar situações de urgência ou medo para fazer você agir sem pensar.",
             "Eles podem se passar por bancos, familiares, ou até órgãos do governo.",
             "Nunca compartilhe senhas, códigos de verificação ou dados bancários por telefone, mensagem ou e-mail.",
             "Na dúvida, desligue e ligue de volta para o número oficial da empresa, ou converse pessoalmente com um familiar de confiança."
     )),
-    LINKS_FALSOS("links-falsos", "Links falsos", List.of(
+    LINKS_FALSOS("links-falsos", "Links falsos", "bi-link-45deg", List.of(
             "Links falsos imitam sites conhecidos, como bancos, lojas e redes sociais, para roubar seus dados.",
             "Preste atenção a erros de português, endereços estranhos e promessas de prêmios ou ofertas muito boas.",
             "Não clique em links recebidos de números ou remetentes desconhecidos.",
             "Se um link parecer suspeito, não clique — pergunte a alguém de confiança antes."
     )),
-    PIX("pix", "PIX seguro", List.of(
+    PIX("pix", "PIX seguro", "bi-cash-coin", List.of(
             "Nunca compartilhe sua chave PIX, senha ou código de confirmação com estranhos.",
             "Golpistas às vezes fingem ter feito um PIX por engano para pedir de volta um valor maior.",
             "Sempre confira o nome de quem vai receber antes de confirmar uma transferência.",
             "Use apenas o aplicativo oficial do seu banco para fazer PIX."
     )),
-    WHATSAPP("whatsapp", "WhatsApp", List.of(
+    WHATSAPP("whatsapp", "WhatsApp", "bi-whatsapp", List.of(
             "Golpistas podem clonar o número de um familiar e pedir dinheiro com urgência.",
             "Antes de enviar qualquer valor, ligue para a pessoa, com a voz dela, para confirmar o pedido.",
             "Tenha cuidado com links enviados em grupos, mesmo por pessoas conhecidas.",
             "Ative a verificação em duas etapas do WhatsApp para proteger sua conta."
     )),
-    SENHAS("senhas", "Senhas seguras", List.of(
+    SENHAS("senhas", "Senhas seguras", "bi-shield-lock", List.of(
             "Use senhas longas e diferentes para cada aplicativo ou site.",
             "Evite datas de nascimento ou nomes fáceis de adivinhar.",
             "Nunca compartilhe suas senhas com ninguém, nem por telefone ou mensagem.",
             "Quando possível, ative a verificação em duas etapas para mais proteção."
     )),
-    PRIVACIDADE("privacidade", "Privacidade", List.of(
+    PRIVACIDADE("privacidade", "Privacidade", "bi-eye-slash", List.of(
             "Tenha cuidado ao compartilhar informações pessoais em redes sociais.",
             "Configure quem pode ver suas fotos e publicações.",
             "Desconfie de pedidos de dados pessoais por telefone, mensagem ou e-mail.",
@@ -49,11 +49,13 @@ public enum MaterialTopic {
 
     private final String slug;
     private final String title;
+    private final String iconClass;
     private final List<String> paragraphs;
 
-    MaterialTopic(String slug, String title, List<String> paragraphs) {
+    MaterialTopic(String slug, String title, String iconClass, List<String> paragraphs) {
         this.slug = slug;
         this.title = title;
+        this.iconClass = iconClass;
         this.paragraphs = paragraphs;
     }
 
@@ -63,6 +65,10 @@ public enum MaterialTopic {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getIconClass() {
+        return iconClass;
     }
 
     public List<String> getParagraphs() {

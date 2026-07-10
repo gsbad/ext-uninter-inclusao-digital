@@ -8,35 +8,44 @@
 <main class="container" style="max-width: 640px;">
     <p class="text-center text-muted mt-4 mb-2">Passo 1 de 4</p>
 
-    <h1 class="text-center mb-4 fs-2">Qual é o seu nome?</h1>
+    <h1 id="fullNameLabel" class="text-center mb-4 fs-2">Qual é o seu nome?</h1>
 
     <form th:action="@{/oficina/cadastro}" th:object="${participantForm}" method="post" novalidate>
 
         <div class="mb-4">
-            <input type="text" class="form-control form-control-lg fs-3 py-3" th:field="*{fullName}"
+            <input type="text" class="form-control form-control-lg fs-3 py-3"
+                   th:classappend="${#fields.hasErrors('fullName')} ? 'is-invalid'"
+                   th:field="*{fullName}" aria-labelledby="fullNameLabel" aria-required="true"
                    placeholder="Digite seu nome completo" autocomplete="name"/>
-            <p class="text-danger fs-5 mt-2" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+            <p class="invalid-feedback fs-5" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
         </div>
 
-        <h2 class="text-center mb-3 fs-3">Qual é a sua faixa de idade?</h2>
-        <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
-            <th:block th:each="range : ${ageRanges}">
-                <input type="radio" class="btn-check" th:field="*{ageRange}" th:value="${range}" autocomplete="off"/>
-                <label class="btn btn-outline-primary btn-lg fs-4 px-4 py-3"
-                       th:for="${#ids.prev('ageRange')}" th:text="${range.label}"></label>
-            </th:block>
-        </div>
-        <p class="text-danger fs-5 text-center mb-4" th:if="${#fields.hasErrors('ageRange')}" th:errors="*{ageRange}"></p>
+        <fieldset class="mb-2">
+            <legend class="text-center mb-3 fs-3">Qual é a sua faixa de idade?</legend>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+                <th:block th:each="range : ${ageRanges}">
+                    <input type="radio" class="btn-check" th:field="*{ageRange}" th:value="${range}"
+                           autocomplete="off"/>
+                    <label class="btn btn-outline-primary btn-lg fs-4 px-4 py-3"
+                           th:for="${#ids.prev('ageRange')}" th:text="${range.label}"></label>
+                </th:block>
+            </div>
+            <p class="text-danger fs-5 text-center mb-4" th:if="${#fields.hasErrors('ageRange')}"
+               th:errors="*{ageRange}"></p>
+        </fieldset>
 
         <div class="mb-4">
             <label for="phone" class="form-label fs-4">Telefone (opcional)</label>
-            <input type="tel" id="phone" class="form-control form-control-lg fs-3 py-3" th:field="*{phone}"
-                   placeholder="Se quiser, informe um telefone" autocomplete="tel"/>
-            <p class="text-danger fs-5 mt-2" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+            <input type="tel" id="phone" class="form-control form-control-lg fs-3 py-3"
+                   th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid'"
+                   th:field="*{phone}" placeholder="Se quiser, informe um telefone" autocomplete="tel"/>
+            <p class="invalid-feedback fs-5" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fs-3">Próximo</button>
+            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fs-3">
+                Próximo <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
+            </button>
         </div>
     </form>
 </main>

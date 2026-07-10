@@ -6,12 +6,17 @@
 </head>
 <body>
 <main class="container" style="max-width: 640px;">
-    <h1 class="text-center mb-4 fs-2" th:text="${topic.title}"></h1>
+    <h1 class="text-center mb-4 fs-2">
+        <i th:class="'bi ' + ${topic.iconClass} + ' me-2'" aria-hidden="true"></i>
+        <span th:text="${topic.title}"></span>
+    </h1>
 
     <p class="fs-4 mb-3" th:each="paragraph : ${topic.paragraphs}" th:text="${paragraph}"></p>
 
     <div class="text-center mt-4">
-        <a href="/oficina/materiais" class="btn btn-outline-primary btn-lg px-5 py-3 fs-4">Voltar aos temas</a>
+        <a href="/oficina/materiais" class="btn btn-outline-primary btn-lg px-5 py-3 fs-4">
+            <i class="bi bi-arrow-left-circle me-2" aria-hidden="true"></i>Voltar aos temas
+        </a>
     </div>
 </main>
 <th:block th:replace="~{fragments/scripts :: bootstrap-js}"></th:block>
