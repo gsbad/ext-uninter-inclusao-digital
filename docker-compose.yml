@@ -1,0 +1,17 @@
+# Uso exclusivo para desenvolvimento local: sobe apenas o PostgreSQL.
+# A containerização da aplicação em si é tratada no Epic 9/10 (deploy).
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: inclusao-digital-db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-inclusao_digital}
+      POSTGRES_USER: ${DB_USER:-inclusao_digital}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-inclusao_digital}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - inclusao-digital-db-data:/var/lib/postgresql/data
+
+volumes:
+  inclusao-digital-db-data:
