@@ -125,6 +125,15 @@ mvn verify
 
 Além dos testes unitários, roda também o teste de integração de ponta a ponta (`*IT`), que sobe um PostgreSQL real via Testcontainers e valida o fluxo completo do participante (cadastro → questionário → materiais → quiz → resultado). **Requer Docker instalado.**
 
+> **Nota:** em algumas versões recentes do Docker Desktop no WSL2, o
+> Testcontainers pode falhar ao negociar a versão da API do Docker contra
+> `/var/run/docker.sock`, mesmo com `docker info`/`docker pull`/`docker
+> compose` funcionando normalmente (erro típico: `BadRequestException
+> Status 400` seguido de `NullPointerException` em
+> `DockerDesktopClientProviderStrategy`). Se isso ocorrer, tente
+> `DOCKER_API_VERSION=1.43 mvn verify`. É uma incompatibilidade de
+> ambiente conhecida, não um defeito do teste ou da aplicação.
+
 ---
 
 ## Público-alvo

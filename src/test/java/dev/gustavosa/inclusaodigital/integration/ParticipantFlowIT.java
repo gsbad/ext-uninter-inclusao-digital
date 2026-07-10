@@ -32,6 +32,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Sufixo "IT" (não "Test") de propósito: o Failsafe roda esta classe na
  * fase integration-test/verify, separada dos testes unitários do Surefire
  * (fase test), que não dependem de Docker.
+ *
+ * <b>Limitação conhecida de ambiente:</b> em Docker Desktop muito recente
+ * rodando via WSL2, o docker-java (biblioteca usada pelo Testcontainers)
+ * pode falhar ao negociar a versão da API do Docker contra
+ * /var/run/docker.sock, mesmo com o Docker funcionando normalmente para
+ * `docker info`/`docker pull`/`docker compose` (erro típico:
+ * BadRequestException Status 400 com corpo JSON vazio, seguido de
+ * NullPointerException em DockerDesktopClientProviderStrategy). Isso é uma
+ * incompatibilidade de ambiente, não um defeito deste teste ou do código
+ * de produção — se ocorrer, tente `DOCKER_API_VERSION=1.43 mvn verify`
+ * antes de assumir que o teste está quebrado.
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
