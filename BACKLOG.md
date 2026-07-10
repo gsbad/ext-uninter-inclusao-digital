@@ -96,7 +96,7 @@
 ## Epic 10 - Portfólio
 
 - [x] Criar favicon
-- [ ] Criar logo do projeto
+- [x] Criar logo do projeto
 - [x] Melhorar README
 - [ ] Adicionar GIF demonstrativo (aguarda gravação pelo usuário)
 - [ ] Publicar no GitHub

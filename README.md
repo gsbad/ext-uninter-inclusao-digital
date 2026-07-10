@@ -1,4 +1,6 @@
-# Inclusão Digital para Pessoas Idosas
+<p align="center">
+  <img src="docs/logo.svg" alt="Inclusão Digital" width="380">
+</p>
 
 ![Java](https://img.shields.io/badge/Java-21-2E6B99?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-2E6B99?logo=springboot&logoColor=white)
