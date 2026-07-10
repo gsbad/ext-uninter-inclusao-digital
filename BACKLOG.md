@@ -15,12 +15,12 @@
 
 ### Epic 2 - Configuração do Projeto
 
-- [ ] Criar projeto Spring Boot
-- [ ] Configurar Maven
-- [ ] Configurar PostgreSQL
-- [ ] Configurar Thymeleaf
-- [ ] Configurar Bootstrap
-- [ ] Configurar Git
+- [x] Criar projeto Spring Boot
+- [x] Configurar Maven
+- [x] Configurar PostgreSQL
+- [x] Configurar Thymeleaf
+- [x] Configurar Bootstrap
+- [x] Configurar Git
 
 ---
 
