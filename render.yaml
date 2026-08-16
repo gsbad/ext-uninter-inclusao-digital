@@ -17,6 +17,13 @@ services:
     plan: free
     region: virginia
     healthCheckPath: /
+    buildFilter:
+      ignoredPaths:
+        - "**.md"
+        - "docs/**"
+        - "LICENSE"
+        - "catalog-info.yaml"
+        - "mkdocs.yml"
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
