@@ -14,7 +14,7 @@ metadata:
     - java
     - spring-boot
     - postgresql
-    - web
+    - thymeleaf
 spec:
   type: website
   lifecycle: production   # experimental | production | deprecated — MVP completo, deploy ativo no Render
