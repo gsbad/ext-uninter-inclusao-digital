@@ -1,0 +1,21 @@
+# Metadado do Backstage Software Catalog.
+#
+# Este arquivo é lido pelo Backstage, mas a aplicação NÃO depende dele para
+# rodar. Se o Backstage nunca subir, nada aqui deixa de funcionar.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: inclusao-digital
+  description: Aplicação web de apoio a oficinas de inclusão digital para idosos — projeto extensionista (Engenharia de Software, UNINTER)
+  annotations:
+    github.com/project-slug: gsbad/ext-uninter-inclusao-digital
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - java
+    - spring-boot
+    - postgresql
+    - thymeleaf
+spec:
+  type: service
+  lifecycle: production   # experimental | production | deprecated
+  owner: gsbad
