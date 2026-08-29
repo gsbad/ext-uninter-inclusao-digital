@@ -1,0 +1,16 @@
+site_name: inclusao-digital
+site_description: Aplicação web de apoio a ações de inclusão digital para pessoas idosas — Atividade Extensionista, Engenharia de Software UNINTER
+
+nav:
+  - Início: index.md
+  - Requisitos: 01-requisitos.md
+  - Arquitetura: 02-arquitetura.md
+  - Modelo de Dados: 03-modelo-dados.md
+  - Casos de Uso: 04-casos-de-uso.md
+  - Wireframes: 05-wireframes.md
+  - Resumo Técnico: 06-resumo-tecnico.md
+  - Deploy no Render: 07-deploy-render.md
+  - Tecnologias Utilizadas: 08-resumo-tecnologias-relatorio.md
+
+plugins:
+  - techdocs-core
